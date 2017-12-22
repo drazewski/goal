@@ -1,0 +1,1 @@
+export const SIGNED_IN = "SINGED_IN"

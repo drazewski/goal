@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import { createStore } from 'redux'; 
+import reducer from './reducers/reducer'
+import { Provider } from 'react-redux';
 import { Router, Route } from 'react-router-dom';
 import { firebaseApp } from './firebase';
 import App from './components/App'
@@ -8,7 +11,8 @@ import SignUp from './components/SignUp'
 import SignIn from './components/SignIn'
 import { createHashHistory } from 'history'
 
-const history = createHashHistory()
+const history = createHashHistory();
+const store = createStore({reducer}); 
 
 
 firebaseApp.auth().onAuthStateChanged(user => {
@@ -24,11 +28,13 @@ firebaseApp.auth().onAuthStateChanged(user => {
 })
 
 ReactDOM.render(
+  <Provider store={store}>
   <Router history={history}>
     <div className="container">
       <Route path="/app" component={App} />
       <Route path="/signin" component={SignIn} />
       <Route path="/signup" component={SignUp} />
     </div>
-  </Router>, document.getElementById('root')
+  </Router>
+  </Provider>, document.getElementById('root')
 );
