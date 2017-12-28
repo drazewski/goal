@@ -10,8 +10,8 @@ export default (state = user, action) => {
 			const { email } = action;
 			user = {
 				email
-      }
-      return user;
+	  }
+	  return user;
 		default:
 			return state;
 	}
