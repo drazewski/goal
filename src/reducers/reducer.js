@@ -1,18 +1,13 @@
-import {SIGNED_IN} from '../constants';
+import { combineReducers } from 'redux';
+import user from './signin_reducer';
+import goal from './goal_reducer';
 
-let user = {
-	email: null
-}
-
-export default (state = user, action) => {
-	switch(action.type) {
-		case SIGNED_IN: 
-			const { email } = action;
-			user = {
-				email
-	  }
-	  return user;
-		default:
-			return state;
-	}
-}
+/**
+ * Turns different reducing functions into a single reducing function
+ */
+const Reducers = combineReducers({
+    user,
+    goal
+});
+//console.log()
+export default Reducers;
