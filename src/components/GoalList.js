@@ -18,10 +18,6 @@ class GoalList extends Component {
   }
 
 	render() {
-    var floatLeft = {
-      display: "inline-block",
-      float: "right",
-    }
 		return (
       <div>
         <h3>Lista zadań</h3>
@@ -30,16 +26,9 @@ class GoalList extends Component {
         {
           this.props.goal.map((goal,index) => {
             return(
-              <div key={index} ><span>{goal.title}</span>
-              
-              {
-                (() => {
-                  switch (goal.data) {
-                    case undefined: return (<span style={floatLeft}> brak daty utworzenia</span>);
-                      default: return (<span style={floatLeft}> data utworzenia: {goal.data}</span>);
-                  }
-                })()
-              }
+              <div>
+              {console.log(goal.title)}
+              <GoalItem key={index} title={goal.title} />
               </div>
             )
           })
@@ -52,8 +41,7 @@ class GoalList extends Component {
 
 function mapStateToProps(state) {
   return {
-    goal: state.goal,
-    user: state.user
+    goal: state.goal
   }
 }
 
