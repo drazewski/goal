@@ -26,9 +26,6 @@ class AddGoal extends Component {
 				<div className="form-group">
 					<input id="newGoal" type="text" onChange={(event) => this.setState({title: event.target.value, data: Date() })} placeholder="Wpisz nazwę zadania"></input>
 					<button className="btn btn-success" onClick={ this.addGoal.bind(this)}> Add </button>
-					{
-						console.log(this)
-					}
 				</div>
 			</div>
 		)
@@ -37,7 +34,6 @@ class AddGoal extends Component {
 
 function mapStateToProps(state) {
 	const { user } = state
-  console.log(state)
   return {
     user
   }
