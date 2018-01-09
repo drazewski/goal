@@ -11,9 +11,11 @@ class GoalList extends Component {
       let goals = [];
       snap.forEach(goal => {
         const {email, title, data} = goal.val();
-        goals.push({email, title, data})
+        const serverKey = goal.key;
+        goals.push({email, title, data, serverKey})
       })
       this.props.setGoal(goals)
+      
     })
   }
 
@@ -25,25 +27,18 @@ class GoalList extends Component {
 		return (
       <div>
         <h3>Lista zadań</h3>
-        <GoalItem />
         <div> 
+          <ol>
         {
           this.props.goal.map((goal,index) => {
             return(
-              <div key={index} ><span>{goal.title}</span>
-              
-              {
-                (() => {
-                  switch (goal.data) {
-                    case undefined: return (<span style={floatLeft}> brak daty utworzenia</span>);
-                      default: return (<span style={floatLeft}> data utworzenia: {goal.data}</span>);
-                  }
-                })()
-              }
-              </div>
+                <li>
+                <GoalItem goal={goal} key={index}/>
+                </li>
             )
           })
         }
+        </ol>
         </div>
       </div>
 		)
@@ -53,7 +48,7 @@ class GoalList extends Component {
 function mapStateToProps(state) {
   return {
     goal: state.goal,
-    user: state.user
+    // user: state.user
   }
 }
 
