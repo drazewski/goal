@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import user from './signin_reducer';
-import goal from './goal_reducer';
+import user from './reducers/signin_reducer';
+import goal from './reducers/goal_reducer';
 
 /**
  * Turns different reducing functions into a single reducing function

@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import { createStore } from 'redux'; 
-import reducer from './reducers/reducer'
+import reducer from './reducers'
 import { Provider } from 'react-redux';
 import { Router, Route } from 'react-router-dom';
 import { firebaseApp } from './firebase';
@@ -13,7 +13,8 @@ import SignIn from './components/SignIn'
 import { createHashHistory } from 'history'
 
 const history = createHashHistory();
-const store = createStore(reducer); 
+const store = createStore(reducer, /* preloadedState, */
+  +  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()); 
 
 
 firebaseApp.auth().onAuthStateChanged(user => {

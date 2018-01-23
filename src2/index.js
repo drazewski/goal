@@ -11,7 +11,7 @@ import App from './components/App';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 
-const store = createStore(reducer);
+const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 firebaseApp.auth().onAuthStateChanged(user => {
   if (user) {

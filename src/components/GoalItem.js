@@ -11,6 +11,12 @@ class GoalItem extends Component {
 		goalRef.child(serverKey).remove();
 	}
 
+	editGoal() {
+		const { email } = this.props.user;
+		const { title, serverKey } = this.props.goal;
+		goalRef.child(serverKey).update({goal: 'test'});
+	}
+
 	render() {
 		var floatLeft = {
 			display: "inline-block",
@@ -26,10 +32,18 @@ class GoalItem extends Component {
 			<span>{this.props.goal.title}</span>
 				<span style={floatLeft}>
 					<button
-						className="btn btn-sm btn-primary"
+						className="btn btn-sm btn-danger"
 						onClick={() => this.deleteGoal()}
 					>
 						Delete
+					</button>
+				</span>
+				<span style={floatLeft}>
+					<button
+						className="btn btn-sm btn-primary"
+						onClick={() => this.editGoal()}
+					>
+						Edit
 					</button>
 				</span>
 			{

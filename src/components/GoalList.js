@@ -3,8 +3,13 @@ import { goalRef } from "../firebase";
 import { connect } from 'react-redux';
 import { setGoal } from '../actions'; 
 import GoalItem from './GoalItem';
+import PropTypes from 'prop-types';
 
 class GoalList extends Component {
+
+  static propTypes = {
+    setGoal: PropTypes.func.isRequired,
+  };
 
 	componentDidMount() {
     goalRef.on('value', snap => {
@@ -25,22 +30,20 @@ class GoalList extends Component {
       float: "right",
     }
 		return (
-      <div>
+      <React.Fragment>
         <h3>Lista zadań</h3>
-        <div> 
-          <ol>
+        
         {
           this.props.goal.map((goal,index) => {
             return(
-                <li>
+                
                 <GoalItem goal={goal} key={index}/>
-                </li>
+              
             )
           })
         }
-        </ol>
-        </div>
-      </div>
+        
+      </React.Fragment>
 		)
 	}
 }
